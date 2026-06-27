@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Feed from "./components/Feed";
+import { BrowserRouter } from "react-router-dom";
+import { Box } from "@mui/material";
+
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter basename="/youtube-clone">
+      <Navbar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
+
+      <Box sx={{ display: "flex" }}>
+        <Sidebar />
+
+        <Box sx={{ flex: 1, p: 3 }}>
+          <Feed searchTerm={searchTerm} />
+        </Box>
+      </Box>
+    </BrowserRouter>
   );
 }
 
