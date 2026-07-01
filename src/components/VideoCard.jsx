@@ -5,18 +5,21 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const VideoCard = ({ video }) => {
+  console.log(video);
   return (
     <Card
+      component={Link}
+      to={`/video/${video.id}`}
       sx={{
         width: 320,
+        textDecoration: "none",
         backgroundColor: "#181818",
         color: "white",
         borderRadius: 3,
-        boxShadow: "none",
         transition: "0.3s",
-        cursor: "pointer",
         "&:hover": {
           transform: "scale(1.03)",
         },
@@ -43,23 +46,11 @@ const VideoCard = ({ video }) => {
           {video.title}
         </Typography>
 
-        <Typography
-          variant="body2"
-          sx={{
-            color: "#AAAAAA",
-            mt: 1,
-          }}
-        >
+        <Typography color="#aaa">
           {video.channel}
         </Typography>
 
-        <Typography
-          variant="body2"
-          sx={{
-            color: "#AAAAAA",
-            fontSize: "13px",
-          }}
-        >
+        <Typography color="#aaa" fontSize={13}>
           {video.views} • {video.published}
         </Typography>
       </CardContent>

@@ -25,11 +25,15 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        width: "220px",
+        width: { xs: 0, sm: 200, md: 220 },
+        display: { xs: "none", sm: "block" },
         backgroundColor: "#0f0f0f",
         color: "white",
         minHeight: "100vh",
         p: 2,
+        borderRight: "1px solid #272727",
+        position: "sticky",
+        top: 0,
       }}
     >
       {categories.map((item) => (
@@ -40,15 +44,20 @@ const Sidebar = () => {
             alignItems: "center",
             gap: 2,
             p: 1.5,
+            mb: 1,
             borderRadius: 2,
             cursor: "pointer",
+            transition: "0.3s",
             "&:hover": {
               backgroundColor: "#272727",
             },
           }}
         >
           {item.icon}
-          <Typography>{item.name}</Typography>
+
+          <Typography fontSize="15px">
+            {item.name}
+          </Typography>
         </Box>
       ))}
     </Box>
