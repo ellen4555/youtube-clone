@@ -5,7 +5,10 @@ import {
   Route,
 } from "react-router-dom";
 
-import { Box } from "@mui/material";
+import {
+  Box,
+  Drawer,
+} from "@mui/material";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -14,18 +17,57 @@ import VideoPlayer from "./components/VideoPlayer";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   return (
     <BrowserRouter basename="/youtube-clone">
       <Navbar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        handleDrawerToggle={handleDrawerToggle}
       />
 
       <Box sx={{ display: "flex" }}>
-        <Sidebar />
+        {/* Desktop Sidebar */}
+        <Box
+          sx={{
+            display: {
+              xs: "none",
+              sm: "block",
+            },
+          }}
+        >
+          <Sidebar />
+        </Box>
 
-        <Box sx={{ flex: 1, p: 3 }}>
+        {/* Mobile Drawer */}
+        <Drawer
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          sx={{
+            display: {
+              xs: "block",
+              sm: "none",
+            },
+            "& .MuiDrawer-paper": {
+              width: 220,
+              background: "#0f0f0f",
+            },
+          }}
+        >
+          <Sidebar />
+        </Drawer>
+
+        <Box
+          sx={{
+            flex: 1,
+            p: 3,
+          }}
+        >
           <Routes>
             <Route
               path="/"

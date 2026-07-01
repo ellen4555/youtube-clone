@@ -25,15 +25,12 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        width: { xs: 0, sm: 200, md: 220 },
-        display: { xs: "none", sm: "block" },
+        width: 220,
         backgroundColor: "#0f0f0f",
         color: "white",
         minHeight: "100vh",
         p: 2,
         borderRight: "1px solid #272727",
-        position: "sticky",
-        top: 0,
       }}
     >
       {categories.map((item) => (
@@ -55,7 +52,12 @@ const Sidebar = () => {
         >
           {item.icon}
 
-          <Typography fontSize="15px">
+          <Typography
+            sx={{
+              fontSize: "15px",
+              fontWeight: 500,
+            }}
+          >
             {item.name}
           </Typography>
         </Box>
